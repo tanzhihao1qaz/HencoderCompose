@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sleepingcat.hencodercompose.fragment.HomeFragment"
+        android:label="HomeFragment">
+
+        <action
+            android:id="@+id/navigate_to_category_fragment"
+            app:destination="@+id/categoryFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.sleepingcat.hencodercompose.fragment.CategoryFragment"
+        android:label="CategoryFragment">
+
+        <action
+            android:id="@+id/navigate_to_tags_fragment"
+            app:destination="@+id/tagsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/tagsFragment"
+        android:name="com.sleepingcat.hencodercompose.fragment.TagsFragment"
+        android:label="TagsFragment">
+
+        <action
+            android:id="@+id/navigate_to_user_fragment"
+            app:destination="@+id/userFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.sleepingcat.hencodercompose.fragment.UserFragment"
+        android:label="UserFragment">
+
+        <!--真机调试如果地址未注册，不能用http协议，否则打不开，但是模拟器可以-->
+        <!--另外如果是http或https，最后要以/结尾-->
+        <deepLink app:uri="test://com.techme.jetpack/user?phone={phone}/" />
+
+    </fragment>
+
+</navigation>
