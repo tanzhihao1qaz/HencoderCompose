@@ -38,8 +38,10 @@ dependencyResolutionManagement {
             library("activity-compose", "androidx.activity", "activity-compose").version("1.7.0")
             library("navigation-fragment-ktx", "androidx.navigation", "navigation-fragment-ktx").version("2.5.3")
             library("navigation-ui-ktx", "androidx.navigation", "navigation-ui-ktx").version("2.5.3")
+            library("monitor", "androidx.test", "monitor").version("1.6.1")
+            library("junit-ktx", "androidx.test.ext", "junit-ktx").version("1.1.5")
 
-            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx"))
+            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx"))
         }
         create("composeLibs") {
             // 关于compose-bom是什么，为什么下面的其他依赖不需要版本号？自行百度Jetpack Compose BOM
