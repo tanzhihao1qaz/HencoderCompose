@@ -2,7 +2,8 @@
 plugins {
     alias(pluginLibs.plugins.application)
     alias(pluginLibs.plugins.kotlin)
-    alias(pluginLibs.plugins.navPlugin)
+//    alias(pluginLibs.plugins.navPlugin)
+    id("NavPlugin") // 发现如果插件是用kts写，就只能用properties定义的名字引用，用gradle写，则用groupId + artifactId + version来引用，也就是那个io.github.tanzhihao1qaz.nav-plugin
 }
 
 android {
@@ -42,6 +43,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = versionLibs.versions.composeCompiler.get()
     }
+
     /*packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -56,7 +58,8 @@ dependencies {
     implementation(platform(composeLibs.compose.bom))
     implementation(composeLibs.bundles.compose)
     implementation(project(mapOf("path" to ":ft-home")))
-    implementation(project(mapOf("path" to ":nav-plugin-runtime")))
+//    implementation(project(mapOf("path" to ":nav-plugin-runtime")))
+    implementation("com.sleepingcat.jetpack:nav-plugin-runtime:1.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

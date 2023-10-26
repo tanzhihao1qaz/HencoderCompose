@@ -12,11 +12,16 @@ java {
 
 publishing {
     publications {
-        mavenJava(MavenPublication){
+        maven(MavenPublication){
             from(components["java"])
             groupId = "com.sleepingcat.jetpack"
             artifactId = "nav-plugin-runtime"
             version = "1.0"
+        }
+    }
+    repositories {
+        maven {
+            url = "../repo"
         }
     }
 }

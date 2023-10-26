@@ -6,6 +6,8 @@ import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ApplicationPlugin
+import org.gradle.api.tasks.SourceSet
+import org.gradle.api.tasks.SourceSetContainer
 
 class NavPlugin : Plugin<Project> {
     override fun apply(project: Project) {
@@ -15,6 +17,13 @@ class NavPlugin : Plugin<Project> {
         assert(applicationPlugin == null) {
             throw GradleException("nav-plugin can only be applied to the module where the application plugin is located")
         }
+        /*val sourceSets = project.extensions.getByType(SourceSetContainer::class.java)
+        val main = sourceSets.named(SourceSet.MAIN_SOURCE_SET_NAME)
+        sourceSets.register("scratch") {
+            it.compileClasspath.plus(main.get().output)
+            it.runtimeClasspath.plus(main.get().output)
+        }*/
+
         val extensions = project.extensions.findByType(BaseExtension::class.java)
         extensions?.registerTransform(NavTransform(project))
     }

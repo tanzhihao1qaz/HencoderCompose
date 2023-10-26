@@ -1,25 +1,26 @@
 pluginManagement {
     repositories {
+        maven{
+            isAllowInsecureProtocol = true
+            url = uri("./repo")
+        }
         google()
         mavenCentral()
         gradlePluginPortal()
         mavenLocal()
-        /* maven{
-             isAllowInsecureProtocol = true
-             url = uri("./repo")
-         }*/
+
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven{
+            isAllowInsecureProtocol = true
+            url = uri("./repo")
+        }
         google()
         mavenCentral()
         mavenLocal()
-        /*maven{
-            isAllowInsecureProtocol = true
-            url = uri("./repo")
-        }*/
     }
     // 创建versionCatalogs方式有两种，然后使用的话都是一样，所以只介绍创建
     // （单个项目使用推荐这个）
@@ -76,7 +77,7 @@ dependencyResolutionManagement {
             plugin("kotlin", "org.jetbrains.kotlin.android").version("1.8.10")
             plugin("kotlinJvm", "org.jetbrains.kotlin.jvm").version("1.8.10")
             plugin("gradlePluginPublish", "com.gradle.plugin-publish").version("1.1.0")
-            plugin("navPlugin", "io.github.tanzhihao1qaz.nav-plugin").version("1.2")
+            plugin("navPlugin", "io.github.tanzhihao1qaz.nav-plugin").version("1.0")
         }
     }
 }
