@@ -10,21 +10,29 @@ import kotlin.collections.ArrayList
 import kotlin.collections.List
 
 public object NavRegistry {
-  private val navList: ArrayList<NavData> = ArrayList<NavData>()
+    private val navList: ArrayList<NavData> = ArrayList<NavData>()
 
 
-  init {
-    navList.add(NavData(type = Fragment,route = "other",className =
-        "com.sleepingcat.ft_home.OtherFragment",asStart = false,deeplink = ""))
-         navList.add(NavData(type = Fragment,route = "home",className =
-            "com.sleepingcat.hencodercompose.fragment.HomeFragment",asStart = false,deeplink = ""))
-         
-  }
+    init {
+        navList.add(
+            NavData(
+                type = Fragment, route = "other", className =
+                "com.sleepingcat.ft_home.OtherFragment", asStart = false, deeplink = ""
+            )
+        )
+        navList.add(
+            NavData(
+                type = Fragment, route = "home", className =
+                "com.sleepingcat.hencodercompose.fragment.HomeFragment", asStart = false, deeplink = ""
+            )
+        )
 
-  public fun getList(): List<NavData> {
-    val list = ArrayList<NavData>()
-         list.addAll(navList)
-         return list
+    }
 
-  }
+    public fun getList(): List<NavData> {
+        val list = ArrayList<NavData>()
+        list.addAll(navList)
+        return list
+
+    }
 }
