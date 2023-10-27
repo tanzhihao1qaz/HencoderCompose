@@ -1,5 +1,11 @@
 package com.sleepingcat.ft_home
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.sleepingcat.ft_home.databinding.FragmentOtherBinding
+import com.sleepingcat.lib_common.BaseFragment
 import com.sleepingcat.nav_plugin_runtime.NavDestination
 
 /**
@@ -8,6 +14,14 @@ import com.sleepingcat.nav_plugin_runtime.NavDestination
  * @描述 TODO
  */
 @NavDestination(route = "other", type = NavDestination.NavType.Fragment)
-class OtherFragment {
-    private val TAG = "OtherFragment"
+class OtherFragment : BaseFragment() {
+    override val TAG = "OtherFragment"
+    private lateinit var otherBinding: FragmentOtherBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        otherBinding = FragmentOtherBinding.inflate(inflater, container, false)
+        return otherBinding.root
+    }
+
 }

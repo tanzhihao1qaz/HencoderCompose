@@ -60,6 +60,7 @@ dependencies {
     implementation(project(mapOf("path" to ":ft-home")))
 //    implementation(project(mapOf("path" to ":nav-plugin-runtime")))
     implementation("com.sleepingcat.jetpack:nav-plugin-runtime:1.0")
+    implementation(project(mapOf("path" to ":lib-common")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

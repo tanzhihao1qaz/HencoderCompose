@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.sleepingcat.hencodercompose.R
-import com.sleepingcat.hencodercompose.base.BaseFragment
+import com.sleepingcat.lib_common.BaseFragment
 import com.sleepingcat.hencodercompose.databinding.FragmentHomeBinding
 import com.sleepingcat.nav_plugin_runtime.NavDestination
 
@@ -33,14 +33,15 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         homeBinding.apply {
             btnNext.setOnClickListener {
-                if (!flag){
+                /*if (!flag){
                     findNavController().navigate(R.id.navigate_to_category_fragment)
                     flag = true
                     Log.d("MainActivity","第一次")
                 }else {
                     findNavController().navigate(R.id.navigate_to_category_fragment,null,NavOptions.Builder().setRestoreState(true).build())
                     Log.d("MainActivity","第二次")
-                }
+                }*/
+                findNavController().navigate("other".hashCode())
             }
             btnPre.setOnClickListener {
                 findNavController().navigateUp()

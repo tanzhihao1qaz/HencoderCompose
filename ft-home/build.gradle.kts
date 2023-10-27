@@ -28,6 +28,13 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = versionLibs.versions.composeCompiler.get()
+    }
+    buildFeatures {
+        compose = true
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -35,4 +42,5 @@ dependencies {
     implementation ("com.sleepingcat.jetpack:nav-plugin-runtime:1.0")
     implementation(platform(composeLibs.compose.bom))
     implementation(composeLibs.bundles.compose)
+    implementation(project(mapOf("path" to ":lib-common")))
 }

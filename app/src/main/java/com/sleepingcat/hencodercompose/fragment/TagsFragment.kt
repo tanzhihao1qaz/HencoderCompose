@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.sleepingcat.hencodercompose.R
-import com.sleepingcat.hencodercompose.base.BaseFragment
+import com.sleepingcat.lib_common.BaseFragment
 import com.sleepingcat.hencodercompose.databinding.FragmentTagsBinding
 
 /**

@@ -1,4 +1,4 @@
-package com.sleepingcat.hencodercompose.base
+package com.sleepingcat.lib_common
 
 import android.os.Bundle
 import android.util.Log
