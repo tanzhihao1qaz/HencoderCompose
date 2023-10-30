@@ -18,7 +18,7 @@ import com.sleepingcat.nav_plugin_runtime.NavDestination
 /**
  * @作者 志浩
  * @时间 2023/10/13 14:58
- * @描述 TODO
+ * @描述
  */
 object NavGraphBuilder {
     private val TAG = "NavGraphBuilder"
@@ -37,6 +37,8 @@ object NavGraphBuilder {
                 NavDestination.NavType.Fragment -> {
                     val navigator = provider.get<FragmentNavigator>("fragment")
                     destination = navigator.createDestination()
+                    // 要设置了route之后才能设置id，原因看destination.route的注解
+//                    destination.route = navData.route
                     destination.id = navData.route.hashCode()
                     destination.setClassName(navData.className)
                 }
@@ -44,6 +46,7 @@ object NavGraphBuilder {
                 NavDestination.NavType.Activity -> {
                     val navigator = provider.get<ActivityNavigator>("activity")
                     destination = navigator.createDestination()
+//                    destination.route = navData.route
                     destination.id = navData.route.hashCode()
                     destination.setComponentName(ComponentName(context.packageName, navData.className))
                 }
@@ -51,6 +54,7 @@ object NavGraphBuilder {
                 NavDestination.NavType.Dialog -> {
                     val navigator = provider.get<DialogFragmentNavigator>("dialog")
                     destination = navigator.createDestination()
+//                    destination.route = navData.route
                     destination.id = navData.route.hashCode()
                     destination.setClassName(navData.className)
                 }
@@ -66,12 +70,13 @@ object NavGraphBuilder {
         return topNavGraph
     }
 
-    private fun getNavGraph(navGroupRoute: String): NavGraph {
-        val graph = navGroupMap[navGroupRoute]
+    private fun getNavGraph(navGraphRoute: String): NavGraph {
+        val graph = navGroupMap[navGraphRoute]
         return if (graph == null) {
             val navGraph = graphNavigator.createDestination()
-            navGraph.id = navGroupRoute.hashCode()
-            navGroupMap[navGroupRoute] = navGraph
+            navGraph.route = navGraphRoute
+            navGraph.id = navGraphRoute.hashCode()
+            navGroupMap[navGraphRoute] = navGraph
             navGraph
         } else {
             graph
@@ -91,7 +96,8 @@ object NavGraphBuilder {
                 navGraph.setStartDestination(navData.route.hashCode())
             }
             topNavGraph.remove(navGraph)
-            topNavGraph.addAll(navGraph)
+            topNavGraph.addDestination(navGraph)
+
         }
     }
 

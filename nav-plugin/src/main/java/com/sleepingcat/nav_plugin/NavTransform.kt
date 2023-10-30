@@ -46,7 +46,7 @@ class NavTransform(private val project: Project) : Transform() {
         const val NAV_RUNTIME_NAV_TYPE = "Lcom/sleepingcat/nav_plugin_runtime/NavDestination\$NavType;"
         private const val KEY_ROUTE = "route"  // NavDestination注解里定义的route成员变量
         private const val KEY_TYPE = "type" // NavDestination注解里定义的type成员变量
-        private const val KEY_NAV_GROUP_ROUTE = "navGroupRoute" // NavDestination注解里定义的navGroupRoute成员变量
+        private const val KEY_NAV_GRAPH_ROUTE = "navGraphRoute" // NavDestination注解里定义的navGroupRoute成员变量
         private const val KEY_IS_STARTER = "isStart" // NavDestination注解里定义的isStart成员变量
         private const val KEY_DEEPLINK = "deeplink" // NavDestination注解里定义的deeplink成员变量
 
@@ -233,7 +233,7 @@ class NavTransform(private val project: Project) : Transform() {
                                 KEY_ROUTE -> route = value as String
                                 KEY_IS_STARTER -> isStart = value as Boolean
                                 KEY_DEEPLINK -> deeplink = value as String
-                                KEY_NAV_GROUP_ROUTE -> navGraphRoute = value as String
+                                KEY_NAV_GRAPH_ROUTE -> navGraphRoute = value as String
                             }
                         }
 
