@@ -37,7 +37,9 @@ object NavGraphBuilder {
                 NavDestination.NavType.Fragment -> {
                     val navigator = provider.get<FragmentNavigator>("fragment")
                     destination = navigator.createDestination()
-                    // 要设置了route之后才能设置id，原因看destination.route的注解
+                    // 要设置了route之后才能设置id，原因看destination.route的注解，
+                    // 另外设置route其实就是用navigation里默认host设置deeplink，跟自己设置deeplink没啥两样
+                    // 这里只设id以及deeplink就够了
 //                    destination.route = navData.route
                     destination.id = navData.route.hashCode()
                     destination.setClassName(navData.className)
