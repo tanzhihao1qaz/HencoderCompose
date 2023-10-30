@@ -15,7 +15,7 @@ import com.sleepingcat.nav_plugin_runtime.NavDestination
  * @时间 2023/10/10 21:33
  * @描述 TODO
  */
-@NavDestination(route = "home", type = NavDestination.NavType.Fragment, isStart = true, deeplink = "test://com.techme.jetpack/user?phone={phone}")
+@NavDestination(route = "home", type = NavDestination.NavType.Fragment, isStart = true)
 class HomeFragment : BaseFragment() {
     override val TAG = "HomeFragment"
     private lateinit var homeFragmentBinding: FragmentHomeBinding
@@ -28,8 +28,6 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val phone = arguments?.getString("phone")
-        Log.d(TAG, "phone = $phone")
 
         homeFragmentBinding.apply {
             btn.setOnClickListener {

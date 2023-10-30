@@ -1,6 +1,7 @@
 package com.sleepingcat.ft_mine
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.sleepingcat.nav_plugin_runtime.NavDestination
  * @时间 2023/10/30 20:39
  * @描述 TODO
  */
-@NavDestination(type = NavDestination.NavType.Fragment, route = "mine")
+@NavDestination(type = NavDestination.NavType.Fragment, route = "mine", deeplink = "test://com.techme.jetpack/user?phone={phone}")
 class MineFragment : BaseFragment() {
     override val TAG = "MineFragment"
 
@@ -26,5 +27,7 @@ class MineFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val phone = arguments?.getString("phone")
+        Log.d(TAG, "phone = $phone")
     }
 }

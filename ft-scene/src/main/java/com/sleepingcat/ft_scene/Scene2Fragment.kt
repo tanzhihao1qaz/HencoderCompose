@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.core.net.toUri
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.sleepingcat.ft_scene.databinding.FragmentScene2Binding
@@ -18,13 +19,13 @@ import com.sleepingcat.nav_plugin_runtime.NavDestination
  * @描述 TODO
  */
 @NavDestination(route = "scene2", type = NavDestination.NavType.Fragment, navGraphRoute = "sceneGraph")
-class Scene2Fragment:BaseFragment() {
+class Scene2Fragment : BaseFragment() {
     override val TAG = "Scene2Fragment"
     private val vm by navGraphViewModels<SceneVm>("sceneGraph".hashCode())
     private lateinit var scene2Binding: FragmentScene2Binding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        scene2Binding = FragmentScene2Binding.inflate(inflater,container,false)
+        scene2Binding = FragmentScene2Binding.inflate(inflater, container, false)
         return scene2Binding.root
     }
 
@@ -35,7 +36,11 @@ class Scene2Fragment:BaseFragment() {
                 vm.addNum()
             }
             btn.setOnClickListener {
-                findNavController().navigate("mine".hashCode())
+                val deeplink = NavDeepLinkRequest.Builder
+                    .fromUri("test://com.techme.jetpack/user?phone=123456".toUri())
+                    .build()
+                findNavController().navigate(deeplink)
+//                findNavController().navigate("mine".hashCode())
             }
         }
     }
