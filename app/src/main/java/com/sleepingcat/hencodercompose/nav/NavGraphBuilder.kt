@@ -76,7 +76,7 @@ object NavGraphBuilder {
         val graph = navGroupMap[navGraphRoute]
         return if (graph == null) {
             val navGraph = graphNavigator.createDestination()
-            navGraph.route = navGraphRoute
+//            navGraph.route = navGraphRoute
             navGraph.id = navGraphRoute.hashCode()
             navGroupMap[navGraphRoute] = navGraph
             navGraph
