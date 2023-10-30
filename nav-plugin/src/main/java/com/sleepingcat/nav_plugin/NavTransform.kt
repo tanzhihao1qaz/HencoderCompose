@@ -5,10 +5,6 @@ import com.android.build.api.transform.QualifiedContent
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformException
 import com.android.build.api.transform.TransformInvocation
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.android.build.gradle.AppPlugin
-import com.android.build.gradle.BaseExtension
-import com.android.build.gradle.api.AndroidBasePlugin
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.sleepingcat.nav_plugin_runtime.NavData
@@ -24,10 +20,6 @@ import com.squareup.kotlinpoet.TypeSpec
 import org.apache.commons.io.FileUtils
 import org.gradle.api.GradleException
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginConvention
-import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.api.tasks.SourceSet
-import org.gradle.api.tasks.SourceSetContainer
 import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
@@ -54,16 +46,17 @@ class NavTransform(private val project: Project) : Transform() {
         const val NAV_RUNTIME_NAV_TYPE = "Lcom/sleepingcat/nav_plugin_runtime/NavDestination\$NavType;"
         private const val KEY_ROUTE = "route"  // NavDestination注解里定义的route成员变量
         private const val KEY_TYPE = "type" // NavDestination注解里定义的type成员变量
-        private const val KEY_STARTER = "isStart" // NavDestination注解里定义的type成员变量
+        private const val KEY_NAV_GROUP_ROUTE = "navGroupRoute" // NavDestination注解里定义的navGroupRoute成员变量
+        private const val KEY_IS_STARTER = "isStart" // NavDestination注解里定义的isStart成员变量
+        private const val KEY_DEEPLINK = "deeplink" // NavDestination注解里定义的deeplink成员变量
 
-        //        private const val NAV_RUNTIME_PKG_NAME = "com.sleepingcat.nav_plugin_runtime"
-        private const val NAV_RUNTIME_PKG_NAME = "com.sleepingcat.hencodercompose.nav"
+        private const val NAV_RUNTIME_PKG_NAME = "com.sleepingcat.nav_plugin_runtime"
         private const val NAV_RUNTIME_REGISTRY_CLASS_NAME = "NavRegistry" // 自定的
         private const val NAV_RUNTIME_DATA_CLASS_NAME = "NavData" // 自定的
         private const val NAV_RUNTIME_NAV_LIST = "navList" // 自定的
 
         //                private const val NAV_RUNTIME_MODULE_NAME = "nav-plugin-runtime"
-        private const val NAV_RUNTIME_MODULE_NAME = "app"
+        private const val CREATE_NAV_CODE_MODULE_NAME = "app" // 要在哪个module生成代码
     }
 
     override fun getName(): String {
@@ -96,6 +89,8 @@ class NavTransform(private val project: Project) : Transform() {
             it.directoryInputs.forEach { directoryInput ->
                 handleDirectoryClasses(directoryInput.file)
                 val outputDir = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
+                // 这个是build/intermediates目录
+                println("$TAG DIR = ${directoryInput.file.path}")
                 if (directoryInput.file.isFile) {
                     FileUtils.copyFile(directoryInput.file, outputDir)
                 } else {
@@ -117,6 +112,41 @@ class NavTransform(private val project: Project) : Transform() {
     }
 
     private fun generateNavRegistry() {
+        val runtimeProject = project.rootProject.findProject(CREATE_NAV_CODE_MODULE_NAME)
+        assert(runtimeProject == null) {
+            throw GradleException("找不到${CREATE_NAV_CODE_MODULE_NAME}此模块")
+        }
+        val android = runtimeProject!!.extensions.getByName("android") as BaseAppModuleExtension
+
+
+        // 如果是java module，可以直接findByName("sourceSets")拿到java.srcDir，但是android module就不行了，android的sourceSets是空了，不能这样直接获取
+        /*println("$TAG runtimeProject路径:${runtimeProject!!.projectDir.path}")
+        val sourceSet = runtimeProject!!.extensions.findByName("sourceSets") as SourceSetContainer
+        val outputFileDir = sourceSet.first().java.srcDirs.first().absoluteFile
+        fileSpec.writeTo(outputFileDir)*/
+
+        var fileSpec: FileSpec? = null
+        android.applicationVariants.all {
+            val appID = it.applicationId
+            if (fileSpec == null) {
+//                fileSpec = createFileSpec(android.defaultConfig.applicationId!!)
+                fileSpec = createFileSpec(appID)
+            }
+            // 这个是生成在buildConfig的输出目录下
+            val outputFileDir = File("${project.buildDir}/generated/source/buildConfig/${it.dirName}/")
+            // 这个是生成在main/java/包名（准确的说是android的build.gradle里的sourceSet定义的main路径）
+//            val outputFileDir = android.sourceSets.getByName("main").java.srcDirs.first().absoluteFile
+            fileSpec?.writeTo(outputFileDir)
+        }
+
+        // 这个是生成在app的build目录下
+        /*val outputFileDir = runtimeProject!!.buildDir.absoluteFile
+        fileSpec.writeTo(outputFileDir)*/
+
+
+    }
+
+    private fun createFileSpec(appId: String): FileSpec {
         // 利用kotlinPoet生成NavRegistry.kt文件，存放在nav_plugin_runtime模块下
         // 用于记录项目中所有的路由节点数据
         val navData = ClassName(NAV_RUNTIME_PKG_NAME, NAV_RUNTIME_DATA_CLASS_NAME)
@@ -127,7 +157,7 @@ class NavTransform(private val project: Project) : Transform() {
 
         val statements = StringBuffer()
         navDataList.forEach {
-            statements.append("navList.add(NavData(type = ${it.type},route = \"${it.route}\",className = \"${it.className}\",asStart = ${it.asStart},deeplink = \"${it.deeplink}\"))")
+            statements.append("navList.add(NavData(type = ${it.type},route = \"${it.route}\",className = \"${it.className}\",navGraphRoute = \"${it.navGraphRoute}\",isStart = ${it.isStart},deeplink = \"${it.deeplink}\"))")
             statements.append("\n ")
         }
 
@@ -147,32 +177,13 @@ class NavTransform(private val project: Project) : Transform() {
             .addFunction(function)
             .build()
 
-        val fileSpec = FileSpec.builder(NAV_RUNTIME_PKG_NAME, NAV_RUNTIME_REGISTRY_CLASS_NAME)
+        // 这里的
+        return FileSpec.builder(appId, NAV_RUNTIME_REGISTRY_CLASS_NAME)
             .addComment("此文件是自动生成，不用编辑它")
             .addType(type)
             .addImport(NavDestination.NavType::class.java, "Fragment", "Activity", "Dialog", "None")
             .addImport(NavData::class.java, "")
             .build()
-
-        val runtimeProject = project.rootProject.findProject(NAV_RUNTIME_MODULE_NAME)
-        assert(runtimeProject == null) {
-            throw GradleException("找不到${NAV_RUNTIME_MODULE_NAME}此模块")
-        }
-
-        // 如果是java module，可以直接findByName("sourceSets")拿到java.srcDir，但是android module就不行了，android的sourceSets是空了，不能这样直接获取
-        /*println("$TAG runtimeProject路径:${runtimeProject!!.projectDir.path}")
-        val sourceSet = runtimeProject!!.extensions.findByName("sourceSets") as SourceSetContainer
-        val outputFileDir = sourceSet.first().java.srcDirs.first().absoluteFile
-        fileSpec.writeTo(outputFileDir)*/
-
-        // android moudule是这样获取
-        val android = runtimeProject!!.extensions.getByName("android") as BaseAppModuleExtension
-        /*android.sourceSets.forEach {
-            println("$TAG ${it.name}")
-        }*/
-        val outputFileDir = android.sourceSets.getByName("main").java.srcDirs.first().absoluteFile
-        fileSpec.writeTo(outputFileDir)
-
     }
 
     private fun handleDirectoryClasses(file: File) {
@@ -213,10 +224,16 @@ class NavTransform(private val project: Project) : Transform() {
                     val annotationVisitor = object : AnnotationNode(Opcodes.ASM9, "") {
                         var route = ""
                         var type = NavDestination.NavType.None
+                        var isStart = false
+                        var navGraphRoute = ""
+                        var deeplink = ""
                         override fun visit(name: String?, value: Any?) {
                             super.visit(name, value)
-                            if (name == KEY_ROUTE) {
-                                route = value as String
+                            when (name) {
+                                KEY_ROUTE -> route = value as String
+                                KEY_IS_STARTER -> isStart = value as Boolean
+                                KEY_DEEPLINK -> deeplink = value as String
+                                KEY_NAV_GROUP_ROUTE -> navGraphRoute = value as String
                             }
                         }
 
@@ -232,7 +249,14 @@ class NavTransform(private val project: Project) : Transform() {
 
                         override fun visitEnd() {
                             super.visitEnd()
-                            val navData = NavData(type = type, route = route, className = classReader.className.replace("/", "."), asStart = false, deeplink = "")
+                            val navData = NavData(
+                                type = type,
+                                route = route,
+                                className = classReader.className.replace("/", "."),
+                                navGraphRoute = navGraphRoute,
+                                isStart = isStart,
+                                deeplink = deeplink
+                            )
                             navDataList.add(navData)
                         }
                     }

@@ -10,12 +10,14 @@ import androidx.navigation.fragment.findNavController
 import com.sleepingcat.hencodercompose.R
 import com.sleepingcat.lib_common.BaseFragment
 import com.sleepingcat.hencodercompose.databinding.FragmentTagsBinding
+import com.sleepingcat.nav_plugin_runtime.NavDestination
 
 /**
  * @作者 志浩
  * @时间 2023/9/27 15:33
  * @描述 TODO
  */
+@NavDestination(type = NavDestination.NavType.Fragment, route = "tags")
 class TagsFragment : BaseFragment() {
     override val TAG = "TagsFragment"
     private lateinit var tagsBinding: FragmentTagsBinding
@@ -35,7 +37,7 @@ class TagsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         tagsBinding.apply {
             btnNext.setOnClickListener {
-                findNavController().navigate(R.id.navigate_to_user_fragment,null,NavOptions.Builder().setPopUpTo(R.id.homeFragment,inclusive = false,saveState = true).build())
+                findNavController().navigate(R.id.navigate_to_user_fragment, null, NavOptions.Builder().setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true).build())
             }
             btnPre.setOnClickListener {
                 findNavController().navigateUp()

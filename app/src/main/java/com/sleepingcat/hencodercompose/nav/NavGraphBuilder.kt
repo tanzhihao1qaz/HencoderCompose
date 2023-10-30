@@ -11,6 +11,7 @@ import androidx.navigation.NavInflater
 import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.get
+import com.sleepingcat.hencodercompose.NavRegistry
 import com.sleepingcat.nav_plugin_runtime.NavData
 import com.sleepingcat.nav_plugin_runtime.NavDestination
 
@@ -21,52 +22,77 @@ import com.sleepingcat.nav_plugin_runtime.NavDestination
  */
 object NavGraphBuilder {
     private val TAG = "NavGraphBuilder"
+    private val navGroupMap = hashMapOf<String, NavGraph?>()
+    private lateinit var topNavGraph: NavGraph
+    private lateinit var graphNavigator: NavGraphNavigator
 
     fun build(controller: NavController, context: Context): NavGraph {
         // 1.构建navGraph对象
         val provider = controller.navigatorProvider
-        val graphNavigator = provider.get<NavGraphNavigator>("navigation")
-        val navGraph = graphNavigator.createDestination()
-
+        graphNavigator = provider["navigation"]
+        topNavGraph = graphNavigator.createDestination()
         NavRegistry.getList().forEach { navData ->
+            val destination: androidx.navigation.NavDestination
             when (navData.type) {
                 NavDestination.NavType.Fragment -> {
                     val navigator = provider.get<FragmentNavigator>("fragment")
-                    val destination = navigator.createDestination()
+                    destination = navigator.createDestination()
                     destination.id = navData.route.hashCode()
                     destination.setClassName(navData.className)
-                    navGraph.addDestination(destination)
-                    inflateDeeplink(context, navData, destination)
                 }
 
                 NavDestination.NavType.Activity -> {
                     val navigator = provider.get<ActivityNavigator>("activity")
-                    val destination = navigator.createDestination()
+                    destination = navigator.createDestination()
                     destination.id = navData.route.hashCode()
                     destination.setComponentName(ComponentName(context.packageName, navData.className))
-                    navGraph.addDestination(destination)
-                    inflateDeeplink(context, navData, destination)
                 }
 
                 NavDestination.NavType.Dialog -> {
                     val navigator = provider.get<DialogFragmentNavigator>("dialog")
-                    val destination = navigator.createDestination()
+                    destination = navigator.createDestination()
                     destination.id = navData.route.hashCode()
                     destination.setClassName(navData.className)
-                    navGraph.addDestination(destination)
-                    inflateDeeplink(context, navData, destination)
                 }
 
                 else -> {
                     throw IllegalStateException("创建navGraph失败，不能用None类型")
                 }
             }
-            if (navData.asStart) {
-                navGraph.setStartDestination(navData.route.hashCode())
-            }
+            addDestination(navData, destination)
+            inflateDeeplink(context, navData, destination)
         }
 //        controller.setGraph(navGraph, null)
-        return navGraph
+        return topNavGraph
+    }
+
+    private fun getNavGraph(navGroupRoute: String): NavGraph {
+        val graph = navGroupMap[navGroupRoute]
+        return if (graph == null) {
+            val navGraph = graphNavigator.createDestination()
+            navGraph.id = navGroupRoute.hashCode()
+            navGroupMap[navGroupRoute] = navGraph
+            navGraph
+        } else {
+            graph
+        }
+    }
+
+    private fun addDestination(navData: NavData, destination: androidx.navigation.NavDestination) {
+        if (navData.navGraphRoute.isEmpty()) {
+            topNavGraph.addDestination(destination)
+            if (navData.isStart) {
+                topNavGraph.setStartDestination(navData.route.hashCode())
+            }
+        } else {
+            val navGraph = getNavGraph(navData.navGraphRoute)
+            navGraph.addDestination(destination)
+            if (navData.isStart) {
+                navGraph.setStartDestination(navData.route.hashCode())
+            }
+            topNavGraph.remove(navGraph)
+            topNavGraph.addAll(navGraph)
+        }
     }
 
     private fun inflateDeeplink(context: Context, navData: NavData, destination: androidx.navigation.NavDestination) {

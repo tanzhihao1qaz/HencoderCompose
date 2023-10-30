@@ -5,4 +5,11 @@ package com.sleepingcat.nav_plugin_runtime
  * @时间 2023/10/9 14:35
  * @描述 TODO
  */
-data class NavData(val type: NavDestination.NavType, val route: String, val className: String, val asStart: Boolean = false, val deeplink: String = "")
+data class NavData(
+    val type: NavDestination.NavType,
+    val route: String,
+    val className: String,
+    val navGraphRoute: String = "",
+    val isStart: Boolean = false,
+    val deeplink: String = ""
+)

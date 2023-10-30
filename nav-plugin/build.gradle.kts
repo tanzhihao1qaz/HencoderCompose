@@ -16,7 +16,7 @@ dependencies {
     implementation(gradleApi())
     implementation(navPluginLibs.bundles.navPlugin)
     implementation(kotlin("stdlib"))
-//    implementation project(path: ":nav-plugin-runtime")
+//    implementation(project(mapOf("path" to ":nav-plugin-runtime")))
     implementation ("com.sleepingcat.jetpack:nav-plugin-runtime:1.0")
 }
 

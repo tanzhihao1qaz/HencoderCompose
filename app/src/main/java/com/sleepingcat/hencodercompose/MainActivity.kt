@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.d("MainActivity","home = ${R.id.homeFragment}; category = ${R.id.categoryFragment}; tags = ${R.id.tagsFragment}; user = ${R.id.userFragment} ")
         val navGraph = NavGraphBuilder.build(navController, this)
-        navController.graph.addAll(navGraph)
+        navController.setGraph(navGraph,null)
         /*setContent {
             HencoderComposeTheme {
                 // A surface container using the 'background' color from the theme
