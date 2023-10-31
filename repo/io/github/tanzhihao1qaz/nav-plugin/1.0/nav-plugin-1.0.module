@@ -1,0 +1,155 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.tanzhihao1qaz",
+    "module": "nav-plugin",
+    "version": "1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "nav-plugin-1.0.jar",
+          "url": "nav-plugin-1.0.jar",
+          "size": 19082,
+          "sha512": "c6e964b4d2245483244e070b365e8f738cdd8087135d9d8d117ea13fc2cf96a576159dec252f15cbd7d842557b1ce2e1be9f360d6e3ee8e6330bf5103262d26e",
+          "sha256": "cc9ea12e749628c3c0ac8f663dbf42a8a5f29f33db51ad3a90f66552d12f635d",
+          "sha1": "836436b760809083ebc029fbd7c8e8470371c6e6",
+          "md5": "f492e744f0f252b10242434f0c509a59"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.ow2.asm",
+          "module": "asm",
+          "version": {
+            "requires": "9.2"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-tree",
+          "version": {
+            "requires": "9.2"
+          }
+        },
+        {
+          "group": "com.squareup",
+          "module": "kotlinpoet",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "commons-io",
+          "module": "commons-io",
+          "version": {
+            "requires": "2.6"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "7.4.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.8.10"
+          }
+        },
+        {
+          "group": "com.sleepingcat.jetpack",
+          "module": "nav-plugin-runtime",
+          "version": {
+            "requires": "1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "nav-plugin-1.0.jar",
+          "url": "nav-plugin-1.0.jar",
+          "size": 19082,
+          "sha512": "c6e964b4d2245483244e070b365e8f738cdd8087135d9d8d117ea13fc2cf96a576159dec252f15cbd7d842557b1ce2e1be9f360d6e3ee8e6330bf5103262d26e",
+          "sha256": "cc9ea12e749628c3c0ac8f663dbf42a8a5f29f33db51ad3a90f66552d12f635d",
+          "sha1": "836436b760809083ebc029fbd7c8e8470371c6e6",
+          "md5": "f492e744f0f252b10242434f0c509a59"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "nav-plugin-1.0-javadoc.jar",
+          "url": "nav-plugin-1.0-javadoc.jar",
+          "size": 261,
+          "sha512": "500fe78c560af7c49036d0e087c7b984e58c236a2c12900b9274cf2d132f93112402b6cd0a3a1ee5b973880fb86a7387f4921be9f4c5c8d05e548d728d1f0f13",
+          "sha256": "0e2ae9e5fa31b5ca2069e1f5e7227553a268308308c11da9aeefbb3b24b73dae",
+          "sha1": "203ec7bbd022dd8c64faea2f5901d19d5d19d089",
+          "md5": "935b0de6979f07494d60e86d1e14cea7"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "nav-plugin-1.0-sources.jar",
+          "url": "nav-plugin-1.0-sources.jar",
+          "size": 5265,
+          "sha512": "635c58bfc82ef614aa0700a0ed5c8365e32d6d2767fb2b4768280926b05fdd8271719e8d007cd8c605d99b61059e9f2124e5b30670d36d039210c117bcf34e78",
+          "sha256": "368a158e8b97537c1a6efd5381579da9fa55d155b1c9bf0ec201d060b683040b",
+          "sha1": "c7332a2922ed57db661c587c377ac575cb414f35",
+          "md5": "f1327a9888b7b5dcb7e4c803a21af47b"
+        }
+      ]
+    }
+  ]
+}

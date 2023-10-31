@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.sleepingcat.jetpack",
+    "module": "nav-plugin-runtime",
+    "version": "1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "nav-plugin-runtime-1.0.jar",
+          "url": "nav-plugin-runtime-1.0.jar",
+          "size": 4972,
+          "sha512": "084fbd57a42d8c996b883ec5c5973e64eb08ecd717448d03cf508123d1a5480c5316d6fccc78eb39015a4d3c3aca61a4fd064303fbd4d464d33fc073829153ba",
+          "sha256": "7ecc762df1d9b84f52c67111c526a7a4968eee5200546b669c2d65238eb485e5",
+          "sha1": "789d230a4a596a61d1134e545c84856bf04719d2",
+          "md5": "48521d1fcde970788b5f9c2aae65b545"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "nav-plugin-runtime-1.0.jar",
+          "url": "nav-plugin-runtime-1.0.jar",
+          "size": 4972,
+          "sha512": "084fbd57a42d8c996b883ec5c5973e64eb08ecd717448d03cf508123d1a5480c5316d6fccc78eb39015a4d3c3aca61a4fd064303fbd4d464d33fc073829153ba",
+          "sha256": "7ecc762df1d9b84f52c67111c526a7a4968eee5200546b669c2d65238eb485e5",
+          "sha1": "789d230a4a596a61d1134e545c84856bf04719d2",
+          "md5": "48521d1fcde970788b5f9c2aae65b545"
+        }
+      ]
+    }
+  ]
+}
