@@ -30,10 +30,10 @@
           "name": "nav-plugin-1.0.jar",
           "url": "nav-plugin-1.0.jar",
           "size": 19082,
-          "sha512": "c6e964b4d2245483244e070b365e8f738cdd8087135d9d8d117ea13fc2cf96a576159dec252f15cbd7d842557b1ce2e1be9f360d6e3ee8e6330bf5103262d26e",
-          "sha256": "cc9ea12e749628c3c0ac8f663dbf42a8a5f29f33db51ad3a90f66552d12f635d",
-          "sha1": "836436b760809083ebc029fbd7c8e8470371c6e6",
-          "md5": "f492e744f0f252b10242434f0c509a59"
+          "sha512": "f0619256b061ecbdb1e74f382fd7ca68562c6257b2a574d2d29b01aba8c97f414dfd135484db9b4726727cf2e2a8332651e24801739e6612d403be5601379d3a",
+          "sha256": "5469bbfaa9328190e02b655f612b1b8b0425fe7f3e1ecc9030e12727746aada4",
+          "sha1": "7f8e5e2a938ba58dae3ab57e0cfa8cae30c4f95f",
+          "md5": "d3fa359fde370c0f3ab532736443b876"
         }
       ]
     },
@@ -104,10 +104,10 @@
           "name": "nav-plugin-1.0.jar",
           "url": "nav-plugin-1.0.jar",
           "size": 19082,
-          "sha512": "c6e964b4d2245483244e070b365e8f738cdd8087135d9d8d117ea13fc2cf96a576159dec252f15cbd7d842557b1ce2e1be9f360d6e3ee8e6330bf5103262d26e",
-          "sha256": "cc9ea12e749628c3c0ac8f663dbf42a8a5f29f33db51ad3a90f66552d12f635d",
-          "sha1": "836436b760809083ebc029fbd7c8e8470371c6e6",
-          "md5": "f492e744f0f252b10242434f0c509a59"
+          "sha512": "f0619256b061ecbdb1e74f382fd7ca68562c6257b2a574d2d29b01aba8c97f414dfd135484db9b4726727cf2e2a8332651e24801739e6612d403be5601379d3a",
+          "sha256": "5469bbfaa9328190e02b655f612b1b8b0425fe7f3e1ecc9030e12727746aada4",
+          "sha1": "7f8e5e2a938ba58dae3ab57e0cfa8cae30c4f95f",
+          "md5": "d3fa359fde370c0f3ab532736443b876"
         }
       ]
     },
@@ -124,10 +124,10 @@
           "name": "nav-plugin-1.0-javadoc.jar",
           "url": "nav-plugin-1.0-javadoc.jar",
           "size": 261,
-          "sha512": "500fe78c560af7c49036d0e087c7b984e58c236a2c12900b9274cf2d132f93112402b6cd0a3a1ee5b973880fb86a7387f4921be9f4c5c8d05e548d728d1f0f13",
-          "sha256": "0e2ae9e5fa31b5ca2069e1f5e7227553a268308308c11da9aeefbb3b24b73dae",
-          "sha1": "203ec7bbd022dd8c64faea2f5901d19d5d19d089",
-          "md5": "935b0de6979f07494d60e86d1e14cea7"
+          "sha512": "57d4f70e1184e29748a9930104939639318002111cc9ff8f79630c4231c803581958acc8f1706466f165444cf5e98c1583199c911c38817c3d1a08adb10e0b1d",
+          "sha256": "deb038a4042ae89a21732057a7e3a64d2f2661e488249637b0c86975c3903c13",
+          "sha1": "f56284c5aacd9f270c035f820995d0eeb5cce293",
+          "md5": "cbda42d0cbe53111428758c6881d2778"
         }
       ]
     },
@@ -144,10 +144,10 @@
           "name": "nav-plugin-1.0-sources.jar",
           "url": "nav-plugin-1.0-sources.jar",
           "size": 5265,
-          "sha512": "635c58bfc82ef614aa0700a0ed5c8365e32d6d2767fb2b4768280926b05fdd8271719e8d007cd8c605d99b61059e9f2124e5b30670d36d039210c117bcf34e78",
-          "sha256": "368a158e8b97537c1a6efd5381579da9fa55d155b1c9bf0ec201d060b683040b",
-          "sha1": "c7332a2922ed57db661c587c377ac575cb414f35",
-          "md5": "f1327a9888b7b5dcb7e4c803a21af47b"
+          "sha512": "91c96ee90469c461abeb1faa794eb611e2f93129cdebbfa28e87a15ef0d3508b2d3d322f134bf7e5a32e60a91f676e2ae7ee36aede8ea040a8c4e2ebec320f0e",
+          "sha256": "e2ec06c4d3d733ba3f612aa4e94d4a2c7be45578a1d71238137db427d17958f4",
+          "sha1": "2781e51aa51ae6de3ccf2dffb1fbe70736839bae",
+          "md5": "67e012bb531b81e6f183fd9c856bb343"
         }
       ]
     }

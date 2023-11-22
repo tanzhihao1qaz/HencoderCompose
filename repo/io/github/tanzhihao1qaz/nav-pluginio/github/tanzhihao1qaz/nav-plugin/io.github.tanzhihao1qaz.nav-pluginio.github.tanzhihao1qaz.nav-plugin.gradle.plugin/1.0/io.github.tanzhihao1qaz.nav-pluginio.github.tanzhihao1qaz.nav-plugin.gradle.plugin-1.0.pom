@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.tanzhihao1qaz.nav-pluginio.github.tanzhihao1qaz.nav-plugin</groupId>
+  <artifactId>io.github.tanzhihao1qaz.nav-pluginio.github.tanzhihao1qaz.nav-plugin.gradle.plugin</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>nav-plugin</name>
+  <description>navigation路由表生成插件</description>
+  <dependencies>
+    <dependency>
+      <groupId>io.github.tanzhihao1qaz</groupId>
+      <artifactId>nav-plugin</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+</project>

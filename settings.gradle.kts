@@ -1,14 +1,20 @@
 pluginManagement {
+    // 修复加载本地插件失败（不知道为啥突然加载不了。。。但要是插件发布到远程仓库，应该是不用加这个）
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "io.github.tanzhihao1qaz.nav-plugin") {
+                useModule("io.github.tanzhihao1qaz:nav-plugin:${requested.version}")
+            }
+        }
+    }
     repositories {
+        gradlePluginPortal()
         maven{
             isAllowInsecureProtocol = true
             url = uri("./repo")
         }
         google()
         mavenCentral()
-        gradlePluginPortal()
-        mavenLocal()
-
     }
 }
 dependencyResolutionManagement {
@@ -20,7 +26,6 @@ dependencyResolutionManagement {
         }
         google()
         mavenCentral()
-        mavenLocal()
     }
     // 创建versionCatalogs方式有两种，然后使用的话都是一样，所以只介绍创建
     // （单个项目使用推荐这个）
