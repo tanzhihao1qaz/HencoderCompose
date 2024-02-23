@@ -2,11 +2,10 @@
 plugins {
     alias(pluginLibs.plugins.library)
     alias(pluginLibs.plugins.kotlin)
-    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.sleepingcat.ft_home"
+    namespace = "com.sleepingcat.lib_network"
     compileSdk = versionLibs.versions.compileSdk.get().toInt()
 
     defaultConfig {
