@@ -12,8 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 //import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.sleepingcat.hencodercompose.http.ApiService
 import com.sleepingcat.hencodercompose.nav.NavGraphBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.concurrent.thread
 
 //import androidx.compose.ui.tooling.preview.Preview
 //import com.sleepingcat.hencodercompose.ui.theme.HencoderComposeTheme
@@ -26,9 +32,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val list = listOf<Int>(1,2,3,4,5,6,7)
+        list.reduce { acc, i ->
+            Log.d("reduce","acc = $acc ; i = $i")
+            acc
+        }
+
         Log.d("MainActivity","home = ${R.id.homeFragment}; category = ${R.id.categoryFragment}; tags = ${R.id.tagsFragment}; user = ${R.id.userFragment} ")
-        val navGraph = NavGraphBuilder.build(navController, this)
-        navController.setGraph(navGraph,null)
+//        val navGraph = NavGraphBuilder.build(navController, this)
+//        navController.setGraph(navGraph,null)
+
         /*setContent {
             HencoderComposeTheme {
                 // A surface container using the 'background' color from the theme

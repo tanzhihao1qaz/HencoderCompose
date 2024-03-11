@@ -13,8 +13,8 @@ pluginManagement {
             isAllowInsecureProtocol = true
             url = uri("./repo")
         }
-        google()
         mavenCentral()
+        google()
     }
 }
 dependencyResolutionManagement {
@@ -24,8 +24,8 @@ dependencyResolutionManagement {
             isAllowInsecureProtocol = true
             url = uri("./repo")
         }
-        google()
         mavenCentral()
+        google()
     }
     // 创建versionCatalogs方式有两种，然后使用的话都是一样，所以只介绍创建
     // （单个项目使用推荐这个）
@@ -47,8 +47,9 @@ dependencyResolutionManagement {
             library("monitor", "androidx.test", "monitor").version("1.6.1")
             library("junit-ktx", "androidx.test.ext", "junit-ktx").version("1.1.5")
             library("paging", "androidx.paging", "paging-runtime").version("3.1.1")
+            library("ktx-stdlib-common", "org.jetbrains.kotlin", "kotlin-stdlib-common").version("1.8.0")
 
-            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx","paging"))
+            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx","paging","ktx-stdlib-common"))
         }
         create("composeLibs") {
             // 关于compose-bom是什么，为什么下面的其他依赖不需要版本号？自行百度Jetpack Compose BOM
@@ -69,9 +70,20 @@ dependencyResolutionManagement {
 
             bundle("navPlugin", kotlin.collections.listOf("asm", "asm-tree", "kotlinpoet", "commons-io", "gradle"))
         }
-        /*create("networkLibs") {
-            library("retrofit","com.s")
-        }*/
+        create("networkLibs") {
+            // retrofit + okHttp3 = 网络库依赖
+            library("retrofit", "com.squareup.retrofit2", "retrofit").version("2.9.0")
+            library("converter-gson", "com.squareup.retrofit2", "converter-gson").version("2.9.0")
+            library("okhttp", "com.squareup.okhttp3", "okhttp").version("4.9.1")
+            library("logging", "com.squareup.okhttp3", "logging-interceptor").version("4.9.1")
+            bundle("network", kotlin.collections.listOf("retrofit", "converter-gson", "okhttp", "logging"))
+        }
+        create("imageLibs") {
+            library("glide", "com.github.bumptech.glide", "glide").version("4.15.0")
+            library("glide-compiler", "com.github.bumptech.glide", "compiler").version("4.15.0")
+            library("glide-transformations", "jp.wasabeef", "glide-transformations").version("4.3.0")
+            bundle("image",kotlin.collections.listOf("glide", "glide-transformations"))
+        }
         create("versionLibs") {
             version("compileSdk", "33")
             version("minSdk", "24")
