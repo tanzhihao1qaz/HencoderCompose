@@ -1,6 +1,7 @@
 package com.sleepingcat.hencodercompose
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,8 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.sleepingcat.hencodercompose.ext.switchTab
 import com.sleepingcat.hencodercompose.http.ApiService
 import com.sleepingcat.hencodercompose.nav.NavGraphBuilder
+import com.sleepingcat.hencodercompose.utils.AppConfig
+import com.sleepingcat.hencodercompose.view.AppBottomBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,16 +36,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val list = listOf<Int>(1,2,3,4,5,6,7)
-        list.reduce { acc, i ->
-            Log.d("reduce","acc = $acc ; i = $i")
-            acc
+        val navGraph = NavGraphBuilder.build(navController, this)
+        navController.setGraph(navGraph,null)
+        findViewById<AppBottomBar>(R.id.bottom_bar).setOnItemSelectedListener {
+            val tab = AppConfig.getBottomBarConfig().tabs[it.order]
+            navController.switchTab(tab.route)
+            !TextUtils.isEmpty(it.title)
         }
-
-        Log.d("MainActivity","home = ${R.id.homeFragment}; category = ${R.id.categoryFragment}; tags = ${R.id.tagsFragment}; user = ${R.id.userFragment} ")
-//        val navGraph = NavGraphBuilder.build(navController, this)
-//        navController.setGraph(navGraph,null)
-
         /*setContent {
             HencoderComposeTheme {
                 // A surface container using the 'background' color from the theme

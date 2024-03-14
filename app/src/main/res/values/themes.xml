@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.HencoderCompose" parent="Theme.MaterialComponents.Light" />
+    <style name="Theme.HencoderCompose" parent="Theme.MaterialComponents.Light" >
+        <item name="android:listDivider">@drawable/list_divider</item>
+    </style>
+
 </resources>

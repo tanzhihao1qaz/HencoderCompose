@@ -39,6 +39,8 @@ dependencyResolutionManagement {
             // group
             // artifact
             // version
+            library("swiperefreshlayout", "androidx.swiperefreshlayout", "swiperefreshlayout").version("1.2.0-alpha01")
+            library("palette", "androidx.palette", "palette").version("1.0.0")
             library("core-ktx", "androidx.core", "core-ktx").version("1.8.0")
             library("lifecycle-runtime-ktx", "androidx.lifecycle", "lifecycle-runtime-ktx").version("2.6.1")
             library("activity-compose", "androidx.activity", "activity-compose").version("1.7.0")
@@ -49,7 +51,7 @@ dependencyResolutionManagement {
             library("paging", "androidx.paging", "paging-runtime").version("3.1.1")
             library("ktx-stdlib-common", "org.jetbrains.kotlin", "kotlin-stdlib-common").version("1.8.0")
 
-            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx","paging","ktx-stdlib-common"))
+            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx","paging","ktx-stdlib-common","swiperefreshlayout","palette"))
         }
         create("composeLibs") {
             // 关于compose-bom是什么，为什么下面的其他依赖不需要版本号？自行百度Jetpack Compose BOM
@@ -108,8 +110,8 @@ include(":app")
 include(":nav-plugin")
 include(":nav-plugin-runtime")
 include(":ft-home")
-include(":ft-community")
-include(":ft-mine")
-include(":ft-scene")
+include(":ft-category")
+include(":ft-user")
+include(":ft-tag")
 include(":lib-common")
 include(":lib-network")

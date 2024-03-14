@@ -52,18 +52,16 @@ android {
 }
 
 dependencies {
-
-    implementation(androidxLibs.bundles.androidx)
     implementation(networkLibs.bundles.network)
     implementation(imageLibs.bundles.image)
     implementation(platform(composeLibs.compose.bom))
     implementation(composeLibs.bundles.compose)
     implementation("com.sleepingcat.jetpack:nav-plugin-runtime:1.0")
     implementation(project(mapOf("path" to ":lib-common")))
-    implementation(project(mapOf("path" to ":ft-scene")))
-    implementation(project(mapOf("path" to ":ft-community")))
-    implementation(project(mapOf("path" to ":ft-home")))
-    implementation(project(mapOf("path" to ":ft-mine")))
+//    implementation(project(mapOf("path" to ":ft-tag")))
+//    implementation(project(mapOf("path" to ":ft-category")))
+//    implementation(project(mapOf("path" to ":ft-home")))
+//    implementation(project(mapOf("path" to ":ft-user")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

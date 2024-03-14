@@ -39,7 +39,6 @@ android {
 }
 
 dependencies {
-    implementation(androidxLibs.bundles.androidx)
     implementation ("com.sleepingcat.jetpack:nav-plugin-runtime:1.0")
     implementation(platform(composeLibs.compose.bom))
     implementation(composeLibs.bundles.compose)

@@ -11,7 +11,7 @@ import androidx.navigation.NavInflater
 import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.get
-//import com.sleepingcat.hencodercompose.NavRegistry
+import com.sleepingcat.hencodercompose.NavRegistry
 import com.sleepingcat.nav_plugin_runtime.NavData
 import com.sleepingcat.nav_plugin_runtime.NavDestination
 
@@ -31,7 +31,7 @@ object NavGraphBuilder {
         val provider = controller.navigatorProvider
         graphNavigator = provider["navigation"]
         topNavGraph = graphNavigator.createDestination()
-        /*NavRegistry.getList().forEach { navData ->
+        NavRegistry.getList().forEach { navData ->
             val destination: androidx.navigation.NavDestination
             when (navData.type) {
                 NavDestination.NavType.Fragment -> {
@@ -67,7 +67,7 @@ object NavGraphBuilder {
             }
             addDestination(navData, destination)
             inflateDeeplink(context, navData, destination)
-        }*/
+        }
 //        controller.setGraph(navGraph, null)
         return topNavGraph
     }

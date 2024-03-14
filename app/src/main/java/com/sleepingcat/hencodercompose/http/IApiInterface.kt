@@ -2,6 +2,7 @@ package com.sleepingcat.hencodercompose.http
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.sleepingcat.hencodercompose.model.Feed
 import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.http.GET
@@ -19,6 +20,6 @@ interface IApiInterface {
         @Query("feedType") feedType: String = "all",
         @Query("pageCount") pageCount: Int = 10,
         @Query("userId") userId: Int = 0
-    ):ApiResult<JsonArray>
+    ):ApiResult<List<Feed>>
 
 }

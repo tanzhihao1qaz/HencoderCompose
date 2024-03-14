@@ -8,14 +8,14 @@
       "size": 24,
       "enable": true,
       "index": 0,
-      "route": "home_fragment",
+      "route": "home",
       "title": "首页"
     },
     {
       "size": 24,
       "enable": true,
       "index": 1,
-      "route": "category_fragment",
+      "route": "category",
       "title": "沙发"
     },
     {
@@ -23,14 +23,14 @@
       "enable": true,
       "index": 2,
       "needLogin": true,
-      "route": "activity_publish",
+      "route": "publish",
       "title": ""
     },
     {
       "size": 24,
       "enable": true,
       "index": 3,
-      "route": "tags_fragment",
+      "route": "tag",
       "title": "发现"
     },
     {
@@ -38,7 +38,7 @@
       "enable": true,
       "index": 4,
       "needLogin": true,
-      "route": "user_fragment",
+      "route": "user",
       "title": "我的"
     }
   ]
