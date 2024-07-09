@@ -1,6 +1,9 @@
 package com.sleepingcat.hencodercompose.model
 import androidx.annotation.Keep
 
+const val TYPE_IMAGE_TEXT = 1
+const val TYPE_VIDEO = 2
+
 
 @Keep
 data class Feed(
@@ -13,7 +16,7 @@ data class Feed(
     val duration: Double,
     val feedsText: String?,
     val height: Int,
-    val id: Int,
+    val id: Long,
     val itemId: Long,
     val itemType: Int,
     val topComment: TopComment?,

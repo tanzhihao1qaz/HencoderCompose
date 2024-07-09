@@ -7,8 +7,9 @@ package com.sleepingcat.hencodercompose.http
  */
 class ApiResult<T> {
     private val TAG = "ApiResult"
-
     var status = 0
     var errMsg = ""
+    val success
+        get() = status == 200
     var body: T? = null
 }

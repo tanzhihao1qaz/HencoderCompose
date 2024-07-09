@@ -3,6 +3,7 @@ package com.sleepingcat.hencodercompose
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ import com.sleepingcat.hencodercompose.nav.NavGraphBuilder
 import com.sleepingcat.hencodercompose.utils.AppConfig
 import com.sleepingcat.hencodercompose.view.AppBottomBar
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.concurrent.thread
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             navController.switchTab(tab.route)
             !TextUtils.isEmpty(it.title)
         }
+
         /*setContent {
             HencoderComposeTheme {
                 // A surface container using the 'background' color from the theme

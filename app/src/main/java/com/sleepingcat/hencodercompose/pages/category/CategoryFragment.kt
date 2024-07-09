@@ -1,4 +1,4 @@
-package com.sleepingcat.hencodercompose.page.category
+package com.sleepingcat.hencodercompose.pages.category
 
 import com.sleepingcat.hencodercompose.databinding.FragmentCategoryBinding
 import com.sleepingcat.lib_common.base.BaseFragment

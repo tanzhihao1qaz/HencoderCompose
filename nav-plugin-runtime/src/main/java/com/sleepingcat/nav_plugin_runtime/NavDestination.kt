@@ -1,6 +1,6 @@
 package com.sleepingcat.nav_plugin_runtime
 
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.CLASS)
 annotation class NavDestination(
     val type: NavType,

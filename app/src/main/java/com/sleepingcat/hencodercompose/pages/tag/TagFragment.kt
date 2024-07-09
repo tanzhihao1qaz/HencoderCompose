@@ -1,4 +1,4 @@
-package com.sleepingcat.hencodercompose.page.tag
+package com.sleepingcat.hencodercompose.pages.tag
 
 import com.sleepingcat.hencodercompose.databinding.FragmentTagBinding
 import com.sleepingcat.lib_common.base.BaseFragment

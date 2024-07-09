@@ -1,4 +1,4 @@
-package com.sleepingcat.hencodercompose.page.publish
+package com.sleepingcat.hencodercompose.pages.publish
 
 import com.sleepingcat.hencodercompose.databinding.FragmentPublishBinding
 import com.sleepingcat.lib_common.base.BaseFragment

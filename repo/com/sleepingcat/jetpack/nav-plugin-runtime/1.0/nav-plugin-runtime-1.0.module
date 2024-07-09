@@ -39,10 +39,10 @@
           "name": "nav-plugin-runtime-1.0.jar",
           "url": "nav-plugin-runtime-1.0.jar",
           "size": 4972,
-          "sha512": "084fbd57a42d8c996b883ec5c5973e64eb08ecd717448d03cf508123d1a5480c5316d6fccc78eb39015a4d3c3aca61a4fd064303fbd4d464d33fc073829153ba",
-          "sha256": "7ecc762df1d9b84f52c67111c526a7a4968eee5200546b669c2d65238eb485e5",
-          "sha1": "789d230a4a596a61d1134e545c84856bf04719d2",
-          "md5": "48521d1fcde970788b5f9c2aae65b545"
+          "sha512": "45ba3479b251b858eebe3cb711c8ea57d8bc4268b25de663313a7db3a01f5dc0b7a83b1aed4640b1325b61f84bc87b360e6e4925ee677c6253aa17f73bbdafde",
+          "sha256": "e7f94acdc5abf2d574577474999c4b4fcaa04e592edacf800f15307f2607ebbc",
+          "sha1": "ae08311e304a14e2e519de52f4fa54e0e9206867",
+          "md5": "92cb452f10e4bd3aeb350e3867987069"
         }
       ]
     },
@@ -71,10 +71,10 @@
           "name": "nav-plugin-runtime-1.0.jar",
           "url": "nav-plugin-runtime-1.0.jar",
           "size": 4972,
-          "sha512": "084fbd57a42d8c996b883ec5c5973e64eb08ecd717448d03cf508123d1a5480c5316d6fccc78eb39015a4d3c3aca61a4fd064303fbd4d464d33fc073829153ba",
-          "sha256": "7ecc762df1d9b84f52c67111c526a7a4968eee5200546b669c2d65238eb485e5",
-          "sha1": "789d230a4a596a61d1134e545c84856bf04719d2",
-          "md5": "48521d1fcde970788b5f9c2aae65b545"
+          "sha512": "45ba3479b251b858eebe3cb711c8ea57d8bc4268b25de663313a7db3a01f5dc0b7a83b1aed4640b1325b61f84bc87b360e6e4925ee677c6253aa17f73bbdafde",
+          "sha256": "e7f94acdc5abf2d574577474999c4b4fcaa04e592edacf800f15307f2607ebbc",
+          "sha1": "ae08311e304a14e2e519de52f4fa54e0e9206867",
+          "md5": "92cb452f10e4bd3aeb350e3867987069"
         }
       ]
     }

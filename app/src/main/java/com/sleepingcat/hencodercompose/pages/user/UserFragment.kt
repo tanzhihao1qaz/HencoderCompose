@@ -1,4 +1,4 @@
-package com.sleepingcat.hencodercompose.page.user
+package com.sleepingcat.hencodercompose.pages.user
 
 import com.sleepingcat.hencodercompose.databinding.FragmentUserBinding
 import com.sleepingcat.lib_common.base.BaseFragment
