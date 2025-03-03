@@ -1,0 +1,103 @@
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    if (hasAndroidPlugin()) {
+        println "======> Android"
+        from android.sourceSets.main.java.srcDirs
+        //noinspection GroovyAccessibility
+        archiveClassifier = 'sources'
+    } else if (hasJavaPlugin()) {
+        println "======> Java"
+        from sourceSets.main.allSource
+        //noinspection GroovyAccessibility
+        archiveClassifier = 'sources'
+    }
+}
+
+afterEvaluate { project ->
+    tasks.all { Task task ->
+        if (task.name.equalsIgnoreCase('publishMavenPublicationToMavenRepository')) {
+            task.dependsOn tasks.getByName('assemble')
+        }
+    }
+}
+
+def hasJavaPlugin() {
+    if (plugins.hasPlugin("java-library")) {
+        return true
+    }
+    return false
+}
+
+def hasAndroidPlugin() {
+    if (plugins.hasPlugin("com.android.library")) {
+        return true
+    }
+    return false
+}
+
+publishing {
+    repositories {
+        /*maven {
+            allowInsecureProtocol true
+            credentials {
+                username 'admin'
+                password '123456'
+            }
+            url 'http://localhost:8081/repository/jiali/'
+        }
+        maven {
+            allowInsecureProtocol true
+            credentials {
+                username 'admin'
+                password 'jl123456'
+            }
+            url 'http://192.168.101.123:8081/repository/jiali/'
+        }*/
+        maven {
+            url = uri("../repo")
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId POM_GROUPID
+            artifactId POM_ARTIFACTID
+            version POM_VERSION
+            description POM_DESCRIPTION
+
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+
+            pom {
+                packaging 'aar'
+                name = POM_ARTIFACTID
+                description = POM_DESCRIPTION
+            }
+            pom.withXml {
+                //asNode().appendNode('测试').appendNode('自定义key', '自定义value')
+                def dependenciesNode = asNode().appendNode('dependencies')
+                configurations.implementation.allDependencies.each {
+                    if (it.version != "unspecified") { // 过滤项目内library引用
+                        println "=====>" + it.properties
+                        println "=====>" + it.group + "  " + it.name + it.version
+                        if (it.group == null || it.name == null || it.version == null) return
+                        if (it.group == group) return
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+
+                        if (it.excludeRules.size() > 0) {
+                            def exclusionsNode = dependencyNode.appendNode('exclusions')
+                            it.excludeRules.each { rule ->
+                                def exclusionNode = exclusionsNode.appendNode('exclusion')
+                                exclusionNode.appendNode('groupId', rule.group)
+                                exclusionNode.appendNode('artifactId', rule.module)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
