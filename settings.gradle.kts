@@ -9,18 +9,22 @@ pluginManagement {
     }
     repositories {
         gradlePluginPortal()
-        maven{
+        maven {
             isAllowInsecureProtocol = true
             url = uri("./repo")
         }
         mavenCentral()
         google()
+        maven {
+            isAllowInsecureProtocol = true
+            url = uri("http://maven.geelib.360.cn/nexus/repository/replugin/")
+        }
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven{
+        maven {
             isAllowInsecureProtocol = true
             url = uri("./repo")
         }
@@ -51,7 +55,7 @@ dependencyResolutionManagement {
             library("paging", "androidx.paging", "paging-runtime").version("3.1.1")
             library("ktx-stdlib-common", "org.jetbrains.kotlin", "kotlin-stdlib-common").version("1.8.0")
 
-            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx","paging","ktx-stdlib-common","swiperefreshlayout","palette"))
+            bundle("androidx", listOf("core-ktx", "lifecycle-runtime-ktx", "activity-compose", "navigation-ui-ktx", "navigation-fragment-ktx", "monitor", "junit-ktx", "paging", "ktx-stdlib-common", "swiperefreshlayout", "palette"))
         }
         create("composeLibs") {
             // 关于compose-bom是什么，为什么下面的其他依赖不需要版本号？自行百度Jetpack Compose BOM
@@ -84,7 +88,7 @@ dependencyResolutionManagement {
             library("glide", "com.github.bumptech.glide", "glide").version("4.15.0")
             library("glide-compiler", "com.github.bumptech.glide", "compiler").version("4.15.0")
             library("glide-transformations", "jp.wasabeef", "glide-transformations").version("4.3.0")
-            bundle("image",kotlin.collections.listOf("glide", "glide-transformations"))
+            bundle("image", kotlin.collections.listOf("glide", "glide-transformations"))
         }
         create("versionLibs") {
             version("compileSdk", "33")

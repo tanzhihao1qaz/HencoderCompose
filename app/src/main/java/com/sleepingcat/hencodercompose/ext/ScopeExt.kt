@@ -18,14 +18,13 @@ fun CoroutineScope.launchWithError(
     onError: (e: Throwable) -> Unit = { _: Throwable -> },
     onComplete: () -> Unit = {}
 ) {
-    this.launch(
-        CoroutineExceptionHandler { _, throwable ->
-            run {
-                // 这里统一处理错误
-                ExceptionUtil.catchException(throwable)
-                onError(throwable)
-            }
+    this.launch(CoroutineExceptionHandler { _, throwable ->
+        run {
+            // 这里统一处理错误
+            ExceptionUtil.catchException(throwable)
+            onError(throwable)
         }
+    }
     ) {
         try {
             block.invoke(this)

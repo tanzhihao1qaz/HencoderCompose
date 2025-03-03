@@ -60,7 +60,7 @@ dependencies {
     implementation(project(mapOf("path" to ":lib-common")))
 //    implementation(project(mapOf("path" to ":ft-tag")))
 //    implementation(project(mapOf("path" to ":ft-category")))
-//    implementation(project(mapOf("path" to ":ft-home")))
+    implementation(project(mapOf("path" to ":ft-home")))
 //    implementation(project(mapOf("path" to ":ft-user")))
 
     testImplementation("junit:junit:4.13.2")

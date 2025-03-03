@@ -30,7 +30,7 @@ class HomeFragmentTest : TestBaseFragment() {
 
         homeFragmentBinding.apply {
             btn.setOnClickListener {
-                findNavController().navigate("sceneGraph".hashCode())
+                findNavController().navigate("other".hashCode())
             }
         }
     }

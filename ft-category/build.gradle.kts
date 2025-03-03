@@ -2,6 +2,7 @@
 plugins {
     alias(pluginLibs.plugins.library)
     alias(pluginLibs.plugins.kotlin)
+    id("maven-publish")
 }
 
 android {
@@ -42,4 +43,21 @@ dependencies {
     implementation(platform(composeLibs.compose.bom))
     implementation(composeLibs.bundles.compose)
     implementation(project(mapOf("path" to ":lib-common")))
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("category") {
+//            from(components["java"])
+            groupId = "com.sleepingcat.android"
+            artifactId = "category"
+            version = "1.0.0"
+        }
+    }
+    repositories {
+        // 本地仓库
+        maven {
+            url = uri("../repo")
+        }
+    }
 }

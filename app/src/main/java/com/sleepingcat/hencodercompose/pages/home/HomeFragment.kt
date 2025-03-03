@@ -10,7 +10,7 @@ import com.sleepingcat.lib_common.base.BaseViewModel
 import com.sleepingcat.nav_plugin_runtime.NavDestination
 import kotlinx.coroutines.launch
 
-@NavDestination(type = NavDestination.NavType.Fragment, route = "home", isStart = true)
+//@NavDestination(type = NavDestination.NavType.Fragment, route = "home", isStart = true)
 class HomeFragment : AbsListFragment() {
     override val vm by viewModels<HomeViewModel>()
 
